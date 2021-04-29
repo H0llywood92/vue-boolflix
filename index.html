@@ -28,21 +28,28 @@
         <ul v-for="(data, index) in resultArray">
             <li >
                 <div>
-                    {{ data.title}} 
-                    {{ data.name}}
-                </div>
-                
-                <div>
-                    {{ data.original_title}}
-                    {{ data.original_name}}   
-                </div>
 
-                <div>
-                    <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" alt="">
-                </div>
+                <img v-if="data.poster_path" :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
+                <img v-else :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">   
 
-                <div>
-                    {{ data.vote_average}}
+                    <div>
+                        {{ data.title}} 
+                        {{ data.name}}
+                    </div>
+                    
+                    <div>
+                        {{ data.original_title}}
+                        {{ data.original_name}}   
+                    </div>
+    
+                    <div>
+                        <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
+                    </div>
+    
+                    <div>
+                        {{ data.vote_average}}
+                    </div>
+
                 </div>
 
             </li>
