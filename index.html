@@ -32,22 +32,26 @@
                 <img v-if="data.poster_path" :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
                 <img v-else :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">   
 
-                    <div>
+                    <div> Titolo:
                         {{ data.title}} 
                         {{ data.name}}
                     </div>
                     
-                    <div>
+                    <div> Titolo originale:
                         {{ data.original_title}}
                         {{ data.original_name}}   
                     </div>
     
-                    <div>
+                    <div> Lingua:
                         <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
                     </div>
     
                     <div>
-                        {{ data.vote_average}}
+                        Voto:
+                        <span v-for="star in convertVote(data)" class="stars">
+                            <i class="fas fa-star"></i>
+                        </span>
+                        
                     </div>
 
                 </div>
