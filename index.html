@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 </head>
@@ -15,6 +16,36 @@
     
     <div id="root">
 
+        <button @click="searchEnter()">click me</button>
+
+        <input type="text" 
+            v-model="userSearch"
+            name="userSearch"
+            placeholder="Search here"
+            @keyup.enter="searchEnter()"
+        >
+
+        <ul v-for="(data, index) in resultArray">
+            <li >
+                <div>
+                    {{ data.title}} 
+                </div>
+                
+                <div>
+                    {{ data.original_title}}  
+                </div>
+
+                <div>
+                    {{ data.original_language}}
+                </div>
+
+                <div>
+                    {{ data.vote_average}}
+                </div>
+
+            </li>
+
+        </ul>
     </div>
 
     <script src="js/script.js"></script>
