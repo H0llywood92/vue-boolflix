@@ -29,8 +29,8 @@
             <li >
                 <div>
 
-                <img v-if="data.poster_path" :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
-                <img v-else :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">   
+                <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
+                <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
 
                     <div> Titolo:
                         {{ data.title}} 

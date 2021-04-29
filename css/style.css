@@ -12,3 +12,8 @@ box-sizing: border-box;
 .language-flag {
     width: 25px;
 }
+
+.no-img{
+    width: 342px;
+    height: 513px;
+}
