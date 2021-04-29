@@ -6,3 +6,9 @@ box-sizing: border-box;
 }
 
 /* Common */
+
+
+/* Main */
+.language-flag {
+    width: 25px;
+}
