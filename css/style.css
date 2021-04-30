@@ -34,6 +34,7 @@ header {
     padding: 20px;
     align-items: center;
     background-color: black;
+    height: 100px;
 }
 
 header .logo{
@@ -88,6 +89,8 @@ main {
     background: linear-gradient(to bottom, #7b7b7b 40%, #333 100%);
     overflow: hidden;
     padding-bottom: 30px;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 
 main .result-list {

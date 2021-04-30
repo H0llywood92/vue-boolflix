@@ -5,7 +5,8 @@ var app = new Vue (
         data: {
             userSearch: '',
             resultArray: [],
-            preview:[],
+            previewPopular:[],
+            previewTopRated:[],
         },
 
         methods: {
@@ -49,20 +50,36 @@ var app = new Vue (
         mounted() {
 
             axios
-            .get('https://api.themoviedb.org/3/movie/popular', {
+                .get('https://api.themoviedb.org/3/movie/popular', {
                 params: {
                 api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
-                query: '',
                 language: 'it'
-            }
-            })
-            .then( (response) => {
-            
-                const popularDate = response.data.results;
+             }
+             })
+                .then( (response) => {
+                    console.log(response)
+                const popularData = response.data.results;
 
-                this.preview = popularDate;
+                this.previewPopular = popularData;
                 
-            })
+             });
+
+             
+             axios
+                .get('https://api.themoviedb.org/3/movie/top_rated', {
+                params: {
+                api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                language: 'it'
+             }
+             })
+                .then( (response) => {
+
+                const topData = response.data.results;
+
+                this.previewTopRated = topData;
+                
+                
+             });
 
         }
     }
