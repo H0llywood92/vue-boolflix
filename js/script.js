@@ -23,6 +23,7 @@ var app = new Vue (
             },
 
 
+            //search content after press button or enter
             searchEnter() {
                 axios
                     .get('https://api.themoviedb.org/3/search/multi', {
@@ -42,7 +43,6 @@ var app = new Vue (
                     })
                
             },
-            
 
             
         },
@@ -57,7 +57,7 @@ var app = new Vue (
              }
              })
                 .then( (response) => {
-                    console.log(response)
+
                 const popularData = response.data.results;
 
                 this.previewPopular = popularData;
@@ -77,7 +77,6 @@ var app = new Vue (
                 const topData = response.data.results;
 
                 this.previewTopRated = topData;
-                
                 
              });
 
