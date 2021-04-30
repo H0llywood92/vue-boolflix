@@ -127,3 +127,8 @@ main li.single-element {
 .info-movies div {
     padding: 10px 0;
 }
+
+.stars {
+    color: yellow;
+    padding-left: 5px;
+}
