@@ -3,10 +3,13 @@ var app = new Vue (
         el: '#root',
 
         data: {
+            thisId: 0,
             userSearch: '',
             resultArray: [],
             previewPopular:[],
             previewTopRated:[],
+            castTv: [],
+            castMovie: []
         },
 
         methods: {
@@ -40,8 +43,50 @@ var app = new Vue (
                         this.resultArray = resultData;
 
                         this.userSearch ='';
+
+                        this.resultArray.forEach(element => {
+
+                            this.thisId = element.id
+                            
+                            ////DA RIVEDERE E SISTEMARE
+                            //
+                            ///
+                            ////
+                            axios
+                            .get('https://api.themoviedb.org/3/movie/' + this.thisId, {
+                                params: {
+                                api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                                append_to_response: 'credits'
+                                }
+                            })
+                            .then( (response) => {
+                                
+                               
+                                this.castMovie = response.data.credits.cast;
+                                console.log(this.castMovie)
+                                    
+                            })
+
+                            axios
+                            .get('https://api.themoviedb.org/3/tv/' + this.thisId, {
+                                params: {
+                                api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                                append_to_response: 'credits'
+                                }
+                            })
+                            .then( (response) => {
+                                
+                                
+                                this.castTv = response.data.credits.cast;
+                                console.log(this.castTv)
+                            })
+                            //
+                            ///
+                            ////
+                        });
+                        
                     })
-               
+           
             },
 
             

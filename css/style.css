@@ -111,13 +111,13 @@ main li.single-element {
 
 .poster-movies img{
     width: 100%;
-    height: 450px;
+    height: 350px;
 }
 
 
 .info-movies {
     width: 100%;
-    height: 450px;
+    height: 350px;
     position: absolute;
     top: 0;
     left: 0;
