@@ -35,6 +35,8 @@ var app = new Vue (
                         const resultData = response.data.results;
             
                         this.resultArray = resultData;
+
+                        this.userSearch ='';
                     })
                
             },

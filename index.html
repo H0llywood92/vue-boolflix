@@ -16,49 +16,82 @@
     
     <div id="root">
 
-        <button @click="searchEnter()">click me</button>
+        <!-- HEADER -->
+        <header class="flex">
 
-        <input type="text" 
-            v-model="userSearch"
-            name="userSearch"
-            placeholder="Search here"
-            @keyup.enter="searchEnter()"
-        >
+            <div class="logo">
+                BOOLFIX
+            </div>
 
-        <ul v-for="(data, index) in resultArray">
-            <li >
-                <div>
+            <!-- Search & button -->
+            <div class="search">
 
-                <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
-                <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
+                <button class="btn" @click="searchEnter()"><i class="fas fa-search"></i></button>
 
-                    <div> Titolo:
-                        {{ data.title}} 
-                        {{ data.name}}
-                    </div>
-                    
-                    <div> Titolo originale:
-                        {{ data.original_title}}
-                        {{ data.original_name}}   
-                    </div>
-    
-                    <div> Lingua:
-                        <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
-                    </div>
-    
+                <input type="text" 
+                    v-model="userSearch"
+                    name="userSearch"
+                    placeholder="Search here"
+                    @keyup.enter="searchEnter()"
+                >
+            </div>
+
+        </header>
+        <!-- END HEADER -->
+
+        <!-- MAIN -->
+        <main>
+
+            <ul class="flex">
+                <li v-for="(data, index) in resultArray" class="single-element">
                     <div>
-                        Voto:
-                        <span v-for="star in convertVote(data)" class="stars">
-                            <i class="fas fa-star"></i>
-                        </span>
-                        
+                    
+                        <div class="poster-movies">
+
+                            <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
+                            <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
+
+                        </div>
+                    
+                        <div class="info-movies">
+                            
+                            <div> Titolo:
+                                {{ data.title}} 
+                                {{ data.name}}
+                            </div>
+                            
+                            <div> Titolo originale:
+                                {{ data.original_title}}
+                                {{ data.original_name}}   
+                            </div>
+            
+                            <div> Lingua:
+                                <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
+                            </div>
+            
+                            <div>
+                                Voto:
+                                <span v-for="star in convertVote(data)" class="stars">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                
+                            </div>
+
+                            <div>
+                                Overview: {{data.overview}}
+                            </div>
+
+                        </div>
+    
                     </div>
+    
+                </li>
+    
+            </ul>
 
-                </div>
+        </main>
+        <!-- END MAIN -->
 
-            </li>
-
-        </ul>
     </div>
 
     <script src="js/script.js"></script>
