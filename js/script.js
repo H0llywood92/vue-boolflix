@@ -4,7 +4,8 @@ var app = new Vue (
 
         data: {
             userSearch: '',
-            resultArray: []
+            resultArray: [],
+            preview:[],
         },
 
         methods: {
@@ -47,7 +48,21 @@ var app = new Vue (
 
         mounted() {
 
-               
+            axios
+            .get('https://api.themoviedb.org/3/movie/popular', {
+                params: {
+                api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                query: '',
+                language: 'it'
+            }
+            })
+            .then( (response) => {
+            
+                const popularDate = response.data.results;
+
+                this.preview = popularDate;
+                
+            })
 
         }
     }

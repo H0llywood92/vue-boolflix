@@ -43,7 +43,55 @@
         <main>
 
             <ul class="flex">
-                <li v-for="(data, index) in resultArray" class="single-element">
+
+                <!-- V-IF -->
+                <li v-for="(data, index) in resultArray" v-if="resultArray.length > 1" class="single-element">
+                    <div>
+                    
+                        <div class="poster-movies">
+
+                            <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
+                            <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
+
+                        </div>
+                    
+                        <div class="info-movies">
+                            
+                            <div> Titolo:
+                                {{ data.title}} 
+                                {{ data.name}}
+                            </div>
+                            
+                            <div> Titolo originale:
+                                {{ data.original_title}}
+                                {{ data.original_name}}   
+                            </div>
+            
+                            <div> Lingua:
+                                <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
+                            </div>
+            
+                            <div>
+                                Voto:
+                                <span v-for="star in convertVote(data)" class="stars">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                
+                            </div>
+
+                            <div>
+                                Overview: {{data.overview}}
+                            </div>
+
+                        </div>
+    
+                    </div>
+    
+                </li>
+
+                <!-- V-ELSE -->
+                <li v-for="data in preview" v-else="resultArray.length < 1" class="single-element">
+
                     <div>
                     
                         <div class="poster-movies">
