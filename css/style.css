@@ -65,19 +65,21 @@ main li.single-element:hover .info-movies{
 
 /* Scrollbar */
 *::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
+    height: 20px;
 }
   
 
 *::-webkit-scrollbar-track {
-    background: #b3b3b3;
+    background: #333;
     border-radius: 20px;
-    border: 3px solid #b3b3b3;
+    border: 3px solid #333;
+    margin: 0 35px;
 }
   
 *::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 20px;
+    background: red;
+    border-radius: 20px; 
 }
 
 
@@ -85,17 +87,17 @@ main li.single-element:hover .info-movies{
 main {
     background: linear-gradient(to bottom, #7b7b7b 40%, #333 100%);
     overflow: hidden;
-    
+    padding-bottom: 30px;
 }
 
-main ul {
+main .result-list {
     flex-wrap: wrap;
     padding: 30px;
 }
 
 main li.single-element {
     position: relative;
-    width: calc( ( 100% / 6) - 43px);
+    width: calc( ( 100% / 6) - 40px);
     margin: 20px;
     cursor: pointer;
 }
@@ -131,4 +133,16 @@ main li.single-element {
 .stars {
     color: yellow;
     padding-left: 5px;
+}
+
+main .preview-list {
+    display: -webkit-box;
+    overflow-x: auto;
+    padding: 0 20px;
+}
+
+.list-title {
+    padding: 30px;
+    font-size: 40px;
+    color: red;
 }
