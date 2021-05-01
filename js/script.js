@@ -5,11 +5,10 @@ var app = new Vue (
         data: {
             thisId: 0,
             userSearch: '',
-            resultArray: [],
+            serchedMovie: [],
+            serchedTv: [],
             previewPopular:[],
             previewTopRated:[],
-            castTv: [],
-            castMovie: []
         },
 
         methods: {
@@ -28,46 +27,67 @@ var app = new Vue (
 
             //search content after press button or enter
             searchEnter() {
-                axios
-                    .get('https://api.themoviedb.org/3/search/multi', {
-                        params: {
-                        api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
-                        query: this.userSearch,
-                        language: 'it'
-                    }
-                    })
-                    .then( (response) => {
-            
-                        const resultData = response.data.results;
-            
-                        this.resultArray = resultData;
+              axios
+                  .get('https://api.themoviedb.org/3/search/movie', {
+                      params: {
+                      api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                      query: this.userSearch,
+                      language: 'it'
+                  }
+                  })
+                  .then( (response) => {
 
-                        this.userSearch ='';
+                      const resultDataMovie = response.data.results;
 
-                        this.resultArray.forEach(element => {
+                      this.serchedMovie = resultDataMovie;
 
-                            this.thisId = element.id
-                            
-                            ////DA RIVEDERE E SISTEMARE
-                            //
-                            ///
-                            ////
-                            axios
-                            .get('https://api.themoviedb.org/3/movie/' + this.thisId, {
-                                params: {
-                                api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
-                                append_to_response: 'credits'
-                                }
-                            })
-                            .then( (response) => {
-                                
-                               
-                                this.castMovie = response.data.credits.cast;
-                                console.log(this.castMovie)
-                                    
-                            })
+                      console.log(this.serchedMovie)
 
-                            axios
+                      this.userSearch ='';
+
+                      this.serchedMovie.forEach(element => {
+
+                          this.thisId = element.id
+
+                          axios
+                           .get('https://api.themoviedb.org/3/movie/' + this.thisId, {
+                               params: {
+                               api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                               append_to_response: 'credits'
+                               }
+                           })
+                           .then( (response) => {
+
+
+
+                           })
+
+                      });
+
+                  })
+
+                  axios
+                      .get('https://api.themoviedb.org/3/search/tv', {
+                          params: {
+                          api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
+                          query: this.userSearch,
+                          language: 'it'
+                      }
+                      })
+                      .then( (response) => {
+
+                          const resultDataTv = response.data.results;
+
+                          this.serchedTv = resultDataTv
+                          console.log(this.serchedTv)
+
+                          this.userSearch ='';
+
+                          this.serchedTv.forEach(element => {
+
+                              this.thisId = element.id
+
+                              axios
                             .get('https://api.themoviedb.org/3/tv/' + this.thisId, {
                                 params: {
                                 api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
@@ -75,21 +95,20 @@ var app = new Vue (
                                 }
                             })
                             .then( (response) => {
-                                
-                                
-                                this.castTv = response.data.credits.cast;
-                                console.log(this.castTv)
+
+
                             })
-                            //
-                            ///
-                            ////
-                        });
-                        
-                    })
-           
+
+                          });
+
+                      })
+
+
+
+
             },
 
-            
+
         },
 
         mounted() {
@@ -106,10 +125,10 @@ var app = new Vue (
                 const popularData = response.data.results;
 
                 this.previewPopular = popularData;
-                
+
              });
 
-             
+
              axios
                 .get('https://api.themoviedb.org/3/movie/top_rated', {
                 params: {
@@ -122,9 +141,9 @@ var app = new Vue (
                 const topData = response.data.results;
 
                 this.previewTopRated = topData;
-                
+
              });
 
         }
     }
-) 
+)

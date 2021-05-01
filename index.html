@@ -15,7 +15,7 @@
 
 </head>
 <body>
-    
+
     <div id="root">
 
         <!-- HEADER -->
@@ -30,7 +30,7 @@
 
                 <button class="btn" @click="searchEnter()"><i class="fas fa-search"></i></button>
 
-                <input type="text" 
+                <input type="text"
                     v-model="userSearch"
                     name="userSearch"
                     placeholder="Search here"
@@ -44,62 +44,102 @@
         <!-- MAIN -->
         <main>
 
-            <ul class="flex result-list" v-if="resultArray.length > 0">
+            <ul class="flex result-list" v-if="serchedTv.length > 0 && serchedMovie.length > 0 ">
 
                 <!-- V-IF -->
-                <li v-for="(data, index) in resultArray" class="single-element">
+                <li v-for="data in serchedMovie" class="single-element">
                     <div>
-                    
+
                         <div class="poster-movies">
 
-                            <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
-                            <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
+                            <img v-if="data.poster_path == null" src="img/NoImageAvailable.jpg" alt="no-img">
+                            <img v-else :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title" class="data.title">
 
                         </div>
-                    
+
                         <div class="info-movies">
-                            
+
                             <div> Titolo:
-                                {{ data.title}} 
+                                {{ data.title}}
                                 {{ data.name}}
                             </div>
-                            
+
                             <div> Titolo originale:
                                 {{ data.original_title}}
-                                {{ data.original_name}}   
+                                {{ data.original_name}}
                             </div>
-            
+
                             <div> Lingua:
                                 <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
                             </div>
-            
+
                             <div>
                                 Voto:
                                 <span v-for="star in convertVote(data)" class="stars">
                                     <i class="fas fa-star"></i>
                                 </span>
-                                
+
                             </div>
 
                             <div>
                                 Overview: {{data.overview}}
                             </div>
 
-                            <div v-for="cast in castMovie" v-if="data.media_type == 'movie'">
-                                {{cast}}
-                            </div>
 
-                            <div v-for="cast in castTv" v-else >
-                                {{cast}}
-                            </div>
 
                         </div>
-    
+
                     </div>
-    
+
                 </li>
 
-               
+                <li v-for="data in serchedTv" class="single-element">
+                    <div>
+
+                        <div class="poster-movies">
+
+                          <img v-if="data.poster_path == null" src="img/NoImageAvailable.jpg" alt="no-img">
+                          <img v-else :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title" class="data.title">
+
+                        </div>
+
+                        <div class="info-movies">
+
+                            <div> Titolo:
+                                {{ data.title}}
+                                {{ data.name}}
+                            </div>
+
+                            <div> Titolo originale:
+                                {{ data.original_title}}
+                                {{ data.original_name}}
+                            </div>
+
+                            <div> Lingua:
+                                <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
+                            </div>
+
+                            <div>
+                                Voto:
+                                <span v-for="star in convertVote(data)" class="stars">
+                                    <i class="fas fa-star"></i>
+                                </span>
+
+                            </div>
+
+                            <div>
+                                Overview: {{data.overview}}
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+
             </ul>
 
             <!-- V-ELSE -->
@@ -112,40 +152,40 @@
 
                     <!-- List -->
                     <ul  class="preview-list list-top">
-                        
+
                         <li v-for="data in previewPopular"  class="single-element">
 
                             <div>
-                            
+
                                 <div class="poster-movies">
 
                                     <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
-                                    <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
+                                    <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">
 
                                 </div>
-                            
+
                                 <div class="info-movies">
-                                    
+
                                     <div> Titolo:
-                                        {{ data.title}} 
+                                        {{ data.title}}
                                         {{ data.name}}
                                     </div>
-                                    
+
                                     <div> Titolo originale:
                                         {{ data.original_title}}
-                                        {{ data.original_name}}   
+                                        {{ data.original_name}}
                                     </div>
-                    
+
                                     <div> Lingua:
                                         <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
                                     </div>
-                    
+
                                     <div>
                                         Voto:
                                         <span v-for="star in convertVote(data)" class="stars">
                                             <i class="fas fa-star"></i>
                                         </span>
-                                        
+
                                     </div>
 
                                     <div>
@@ -153,13 +193,13 @@
                                     </div>
 
                                 </div>
-            
-                            </div>
-            
-                        </li>
-                        
 
-                        
+                            </div>
+
+                        </li>
+
+
+
                     </ul>
 
                 </div>
@@ -171,40 +211,40 @@
 
                     <!-- List -->
                     <ul  class="preview-list list-bottom" >
- 
+
                         <li v-for="data in previewTopRated"  class="single-element">
 
                             <div>
-                            
+
                                 <div class="poster-movies">
 
                                     <img v-if="data.poster_path || data.backdrop_path " :src="'https://image.tmdb.org/t/p/' + 'w342' + data.poster_path" :alt="data.title">
-                                    <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">   
+                                    <img v-else src="img/NoImageAvailable.jpg" :alt="data.title" class="no-img">
 
                                 </div>
-                            
+
                                 <div class="info-movies">
-                                    
+
                                     <div> Titolo:
-                                        {{ data.title}} 
+                                        {{ data.title}}
                                         {{ data.name}}
                                     </div>
-                                    
+
                                     <div> Titolo originale:
                                         {{ data.original_title}}
-                                        {{ data.original_name}}   
+                                        {{ data.original_name}}
                                     </div>
-                    
+
                                     <div> Lingua:
                                         <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
                                     </div>
-                    
+
                                     <div>
                                         Voto:
                                         <span v-for="star in convertVote(data)" class="stars">
                                             <i class="fas fa-star"></i>
                                         </span>
-                                        
+
                                     </div>
 
                                     <div>
@@ -212,15 +252,15 @@
                                     </div>
 
                                 </div>
-            
-                            </div>
-            
-                        </li>
-                        
 
-                        
+                            </div>
+
+                        </li>
+
+
+
                     </ul>
-                    
+
                 </div>
            </div>
 
