@@ -28,6 +28,13 @@ var app = new Vue (
                 return convertAverage
             },
 
+            //Return Home
+            home() {
+                
+                this.searchedMovie = [];
+                this.searchedTv = [];
+            },
+
             //Show only Movies
             btnMovies(){
 
