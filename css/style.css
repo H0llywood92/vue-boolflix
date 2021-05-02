@@ -94,11 +94,11 @@ main {
 }
 
 main .button-select {
-    padding: 0px 15px;
     border-radius: 4px;
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
     border: 0;
-    margin: 0 10px;
+    margin: 0 25px;
     cursor: pointer;
     font-family: 'Antonio', sans-serif;
     color: red;
