@@ -61,7 +61,7 @@ header {
 }
 
 header .logo{
-    width: 45%;
+    width: 42%;
     color: red;
     font-size: 50px;
     padding-left: 30px;
@@ -92,6 +92,24 @@ main {
     height: calc(100vh - 100px);
     overflow-y: auto;
 }
+
+main .button-select {
+    padding: 0px 15px;
+    border-radius: 4px;
+    font-size: 20px;
+    border: 0;
+    margin: 0 10px;
+    cursor: pointer;
+    font-family: 'Antonio', sans-serif;
+    color: red;
+    background-color: #7b7b7b;
+}
+
+main .button-container {
+    text-align: center;
+    padding-top: 20px;
+}
+
 
 main .result-list {
     flex-wrap: wrap;

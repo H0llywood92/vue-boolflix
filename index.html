@@ -44,10 +44,16 @@
         <!-- MAIN -->
         <main>
 
-            <ul class="flex result-list" v-if="serchedTv.length > 0 && serchedMovie.length > 0 ">
+            <div class="button-container">
+                <button type="button"  @click="btnTv" class="button-select">Tv Series</button>
+                <button type="button" @click="btnMovies" class="button-select">Movies</button>
+                <button type="button" @click="btnAll" class="button-select">All</button>
+            </div>
+
+            <ul class="flex result-list" v-if="searchedTv.length > 0 || searchedMovie.length > 0 ">
 
                 <!-- V-IF -->
-                <li v-for="data in serchedMovie" class="single-element">
+                <li v-for="data in searchedMovie" class="single-element" v-if="visibleMovie" >
                     <div>
 
                         <div class="poster-movies">
@@ -93,7 +99,7 @@
 
                 </li>
 
-                <li v-for="data in serchedTv" class="single-element">
+                <li v-for="data in searchedTv" class="single-element"  v-if="visibleTv">
                     <div>
 
                         <div class="poster-movies">
@@ -153,7 +159,7 @@
                     <!-- List -->
                     <ul  class="preview-list list-top">
 
-                        <li v-for="data in previewPopular"  class="single-element">
+                        <li v-for="data in previewPopular"  class="single-element" >
 
                             <div>
 
