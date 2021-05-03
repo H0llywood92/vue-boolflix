@@ -104,6 +104,7 @@ var app = new Vue (
 
                             this.searchedMovie.push(element)
                            })
+                           this.searchedMovie = [];
                       });
                   })
 
@@ -139,9 +140,7 @@ var app = new Vue (
 
                                 this.searchedTv.push(element);
                             })
-
-                            console.log(element)
-                            
+                            this.searchedTv = [];
 
                           });
 
