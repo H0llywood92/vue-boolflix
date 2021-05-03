@@ -10,6 +10,7 @@ var app = new Vue (
             previewPopular:[],
             previewTopRated:[],
             genreMovies: [],
+            genreTv: [],
             visibleTv: true,
             visibleMovie: true
         },
@@ -94,12 +95,8 @@ var app = new Vue (
                            })
                            .then( (response) => {
 
-                             let genreMovieArray = [];
-                             let castMovieArray = [];
-
-                             this.genreMovieArray = response.data.genres;
-                             this.genreMovies = this.genreMovieArray
-                             console.log(genreMovieArray)
+                             this.genreMovies = response.data.genres;
+                             
 
                            })
 
@@ -139,10 +136,8 @@ var app = new Vue (
                             })
                             .then( (response) => {
 
-                              let genreTvArray = [];
-                              let castTvArray = [];
 
-                              this.genreTvArray = response.data.genres;
+                              this.genreTv = response.data.genres;
                             })
 
                           });
