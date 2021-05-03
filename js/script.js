@@ -3,14 +3,24 @@ var app = new Vue (
         el: '#root',
 
         data: {
-            thisId: 0,
+            //User Search
             userSearch: '',
+
+            //Result Movies founded
             searchedMovie: [],
+
+            //Result Tv Series founded
             searchedTv: [],
+
+            //Popular Movies & Tv Series in home
             previewPopular:[],
             previewTopRated:[],
-            genreMovies: [],
-            genreTv: [],
+
+            //Cast Movies & Tv Series
+            castMovies: [],
+            castTv: [],
+
+            //Visible for Movies & Tv Series
             visibleTv: true,
             visibleMovie: true
         },
@@ -76,18 +86,12 @@ var app = new Vue (
 
                       const resultDataMovie = response.data.results;
 
-                      this.searchedMovie = resultDataMovie;
-
-                      this.lastSearch = this.userSearch;
-
                       this.userSearch ='';
 
-                      this.searchedMovie.forEach(element => {
-
-                          this.thisId = element.id
+                      resultDataMovie.forEach(element => {
 
                           axios
-                           .get('https://api.themoviedb.org/3/movie/' + this.thisId, {
+                           .get('https://api.themoviedb.org/3/movie/' + element.id, {
                                params: {
                                api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
                                append_to_response: 'credits'
@@ -95,13 +99,12 @@ var app = new Vue (
                            })
                            .then( (response) => {
 
-                             this.genreMovies = response.data.genres;
-                             
+                            element.genre = response.data.genres.slice(0, 2);
+                            element.cast = response.data.credits.cast.slice(0, 5);
 
+                            this.searchedMovie.push(element)
                            })
-
                       });
-
                   })
 
                   //Tv Series Api Call
@@ -117,18 +120,12 @@ var app = new Vue (
 
                           const resultDataTv = response.data.results;
 
-                          this.searchedTv = resultDataTv
-
-                          this.lastSearch = this.userSearch;
-
                           this.userSearch ='';
 
-                          this.searchedTv.forEach(element => {
-
-                              this.thisId = element.id
+                          resultDataTv.forEach(element => {
 
                               axios
-                            .get('https://api.themoviedb.org/3/tv/' + this.thisId, {
+                            .get('https://api.themoviedb.org/3/tv/' + element.id, {
                                 params: {
                                 api_key: 'a21d6a53ae3ba4432e6ec0b5967e1ce3',
                                 append_to_response: 'credits'
@@ -137,8 +134,14 @@ var app = new Vue (
                             .then( (response) => {
 
 
-                              this.genreTv = response.data.genres;
+                                element.genre = response.data.genres.slice(0, 2);
+                                element.cast = response.data.credits.cast.slice(0, 5);
+
+                                this.searchedTv.push(element);
                             })
+
+                            console.log(element)
+                            
 
                           });
 

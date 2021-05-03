@@ -65,20 +65,27 @@
 
                         <div class="info-movies">
 
+                            <!-- Title -->
                             <div> Titolo:
                                 {{ data.title}}
                                 {{ data.name}}
                             </div>
+                            <!-- End Title -->
 
+                            <!-- Original Title -->
                             <div> Titolo originale:
                                 {{ data.original_title}}
                                 {{ data.original_name}}
                             </div>
+                            <!-- End Original Title -->
 
+                            <!-- Language -->
                             <div> Lingua:
                                 <img class="language-flag" :src="'img/' + data.original_language + '.jpg'" :alt="data.original_language">
                             </div>
+                            <!-- End Language -->
 
+                            <!-- Vote -->
                             <div>
                                 Voto:
                                 <span v-for="star in convertVote(data)" class="stars">
@@ -86,15 +93,72 @@
                                 </span>
 
                             </div>
+                            <!-- End Vote -->
 
+                            <!-- Overview -->
                             <div>
                                 Overview: {{data.overview}}
                             </div>
+                            
 
-                            <div v-for="genre in genreMovies">
+                            <div v-for="genre in searchedMovie.genre">
                                 {{genre.name}}
-
                             </div>
+
+                            <!-- Genre -->
+                            <div v-if="data.genre.length > 1">
+                                Generi:
+                                {{data.genre[0].name}} -
+                                {{data.genre[1].name}}
+                            </div>
+
+                            <div  v-if="data.genre.length == 1">
+                                Generi:
+                                {{data.genre[0].name}}
+                            </div>
+                            <!-- End Genre -->
+
+                            <!-- Cast -->
+                            <div v-if="data.cast.length > 4">
+                                <ul>
+                                    Attori :
+                                    <li>
+                                        {{data.cast[0].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[1].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[2].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[3].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[4].name}}
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div v-if="data.cast.length < 3">
+                                <ul>
+                                    Attori :
+                                    <li>
+                                        {{data.cast[0].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[1].name}}
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!-- End Cast -->
 
                         </div>
 
@@ -140,7 +204,76 @@
                                 Overview: {{data.overview}}
                             </div>
 
+                             <div v-if="data.genre.length > 1">
+                                Generi:
+                                {{data.genre[0].name}} -
+                                {{data.genre[1].name}}
+                            </div>
 
+                            <div v-if="data.genre.length == 1">
+                                Generi:
+                                {{data.genre[0].name}}
+                            </div>
+
+                             <!-- Cast -->
+                             <div v-if="data.cast.length == 5">
+                                <ul>
+                                    Attori :
+                                    <li>
+                                        {{data.cast[0].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[1].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[2].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[3].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[4].name}}
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div v-if="data.cast.length == 3">
+                                <ul>
+                                    Attori :
+                                    <li>
+                                        {{data.cast[0].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[1].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[2].name}}
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div v-if="data.cast.length == 2">
+                                <ul>
+                                    Attori :
+                                    <li>
+                                        {{data.cast[0].name}}
+                                    </li>
+
+                                    <li>
+                                        {{data.cast[1].name}}
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!-- End Cast -->
 
                         </div>
 
