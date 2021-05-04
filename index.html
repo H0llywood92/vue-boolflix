@@ -99,63 +99,20 @@
                             <div>
                                 Overview: {{data.overview}}
                             </div>
-                            
-
-                            <div v-for="genre in searchedMovie.genre">
-                                {{genre.name}}
-                            </div>
 
                             <!-- Genre -->
-                            <div v-if="data.genre.length > 1">
+                            <div >
                                 Generi:
-                                {{data.genre[0].name}} -
-                                {{data.genre[1].name}}
-                            </div>
-
-                            <div  v-if="data.genre.length == 1">
-                                Generi:
-                                {{data.genre[0].name}}
-                            </div>
+                                <span class="genre" v-for="genre in data.genre">{{genre.name}}</span>
                             <!-- End Genre -->
 
                             <!-- Cast -->
-                            <div v-if="data.cast.length > 4">
+                            <div >
                                 <ul>
                                     Attori :
-                                    <li>
-                                        {{data.cast[0].name}}
+                                    <li v-for="cast in data.cast">
+                                        {{cast.name}}
                                     </li>
-
-                                    <li>
-                                        {{data.cast[1].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[2].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[3].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[4].name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div v-if="data.cast.length == 2">
-                                <ul>
-                                    Attori :
-                                    <li>
-                                        {{data.cast[0].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[1].name}}
-                                    </li>
-
                                 </ul>
                             </div>
                             <!-- End Cast -->
@@ -204,73 +161,19 @@
                                 Overview: {{data.overview}}
                             </div>
 
-                             <div v-if="data.genre.length > 1">
+                            <!-- Genre -->
+                            <div >
                                 Generi:
-                                {{data.genre[0].name}} -
-                                {{data.genre[1].name}}
-                            </div>
+                                <span class="genre" v-for="genre in data.genre">{{genre.name}}</span>
+                            <!-- End Genre -->
 
-                            <div v-if="data.genre.length == 1">
-                                Generi:
-                                {{data.genre[0].name}}
-                            </div>
-
-                             <!-- Cast -->
-                             <div v-if="data.cast.length == 5">
+                            <!-- Cast -->
+                            <div >
                                 <ul>
                                     Attori :
-                                    <li>
-                                        {{data.cast[0].name}}
+                                    <li v-for="cast in data.cast">
+                                        {{cast.name}}
                                     </li>
-
-                                    <li>
-                                        {{data.cast[1].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[2].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[3].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[4].name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div v-if="data.cast.length == 3">
-                                <ul>
-                                    Attori :
-                                    <li>
-                                        {{data.cast[0].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[1].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[2].name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div v-if="data.cast.length == 2">
-                                <ul>
-                                    Attori :
-                                    <li>
-                                        {{data.cast[0].name}}
-                                    </li>
-
-                                    <li>
-                                        {{data.cast[1].name}}
-                                    </li>
-
                                 </ul>
                             </div>
                             <!-- End Cast -->

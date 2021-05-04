@@ -99,8 +99,12 @@ var app = new Vue (
                            })
                            .then( (response) => {
 
-                            element.genre = response.data.genres.slice(0, 2);
-                            element.cast = response.data.credits.cast.slice(0, 5);
+                            // element.genre = response.data.genres.slice(0, 2);
+                            //element.cast = response.data.credits.cast.slice(0, 5);
+                            Vue.set(element, 'genre', response.data.genres.slice(0, 2));
+
+                            Vue.set(element, 'cast', response.data.credits.cast.slice(0, 5));
+
 
                             this.searchedMovie.push(element)
                            })
@@ -135,8 +139,11 @@ var app = new Vue (
                             .then( (response) => {
 
 
-                                element.genre = response.data.genres.slice(0, 2);
-                                element.cast = response.data.credits.cast.slice(0, 5);
+                                // element.genre = response.data.genres.slice(0, 2);
+                                //element.cast = response.data.credits.cast.slice(0, 5);
+                                Vue.set(element, 'genre', response.data.genres.slice(0, 2));
+
+                                Vue.set(element, 'cast', response.data.credits.cast.slice(0, 5));
 
                                 this.searchedTv.push(element);
                             })

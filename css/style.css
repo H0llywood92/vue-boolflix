@@ -169,3 +169,7 @@ main .preview-list {
     color: red;
     font-family: 'Antonio', sans-serif;
 }
+
+.genre{
+    margin-left: 5px;
+}
